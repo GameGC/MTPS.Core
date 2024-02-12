@@ -1,4 +1,4 @@
-using ThirdPersonController.Core.CodeStateMachine;
+using MTPS.Core.Editor;
 using UnityEditor;
 using UnityEditorInternal;
 

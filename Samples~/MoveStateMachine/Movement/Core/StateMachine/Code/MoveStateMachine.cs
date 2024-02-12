@@ -1,10 +1,8 @@
 ﻿using System.Collections;
 using GameGC.CommonEditorUtils.Editor;
 using MTPS.Core;
+using MTPS.Core.Attributes;
 using MTPS.Core.CodeStateMachine;
-using MTPS.Core.CodeStateMachine.CustomEditor;
-using MTPS.Movement.Core.Input;
-using ThirdPersonController.MovementStateMachine;
 using UnityEditor;
 using UnityEngine;
 
@@ -23,13 +21,6 @@ namespace MTPS.Movement.Core.StateMachine.Editor
             if (startWhenResolverIsReady)
                 return;
 
-            //fix of circular dependency
-            if (Variables is IMoveStateMachineVariables moveStateMachineVariables)
-            {
-                var inputReader = ReferenceResolver.GetComponent<IMoveInput>();
-                inputReader.movementSmooth = moveStateMachineVariables.MovementSmooth;
-            }
-            
             foreach (var feature in alwaysExecutedFeatures)
             {
                 feature.CacheReferences(Variables,ReferenceResolver);
@@ -44,13 +35,6 @@ namespace MTPS.Movement.Core.StateMachine.Editor
             {
                 yield return new WaitUntil(() => ReferenceResolver.isReady);
                 
-                //fix of circular dependency
-                if (Variables is IMoveStateMachineVariables moveStateMachineVariables)
-                {
-                    var inputReader = ReferenceResolver.GetComponent<IMoveInput>();
-                    inputReader.movementSmooth = moveStateMachineVariables.MovementSmooth;
-                }
-            
                 foreach (var feature in alwaysExecutedFeatures)
                 {
                     feature.CacheReferences(Variables,ReferenceResolver);
