@@ -1,7 +1,7 @@
 {
   "name": "com.gamegc.mtps.core",
   "displayName": "MTPS Core",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "MTPS core with samples",
   "author" : {
     "name": "GameGC"
